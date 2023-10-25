@@ -1,0 +1,89 @@
+Изучить создание процессов в ОС UNIX.
+
+Первая часть задания — родительский процесс не дожидается окончания своих дочерних процессов.
+
+Что запрограммировать:
+
+1.   Взять с командной строки количество создаваемых процессов.
+
+2.   Запустить цикл (от 0 до N), в котором вызвать функцию fork().
+
+3.   Дочерние процессы должны доложиться о себе и заснуть на короткое время — sleep(5). После пробуждения доложиться о том, что проснулись.
+
+4.   И родительский, и дочерние процессы должны выводить свои PID и PPID — getpid() и getppid() соответственно.
+
+5.   Дочерние процессы не пускать (!!!) на новую итерацию цикла.
+
+
+
+Что отобразить на консоли:
+
+$ ./a.out 5
+
+main process started... PID = 16728
+
+child started... PID = 16729, PPID = 16728 (i = 0)
+
+child started... PID = 16730, PPID = 16728 (i = 1)
+
+child started... PID = 16731, PPID = 16728 (i = 2)
+
+child started... PID = 16732, PPID = 16728 (i = 3)
+
+child started... PID = 16733, PPID = 16728 (i = 4)
+
+main process finifhed... PID = 16728
+
+$
+
+0 child finished... PID = 16729, PPID = 1
+
+2 child finished... PID = 16731, PPID = 1
+
+1 child finished... PID = 16730, PPID = 1
+
+3 child finished... PID = 16732, PPID = 1
+
+4 child finished... PID = 16733, PPID = 1
+
+
+
+Вторая часть задания — родительский процесс дожидается окончания своих дочерних процессов.
+
+Что запрограммировать:
+
+1.   То же, что и первая часть задания.
+
+2.   После порождающего цикла сделать цикл (от 0 до N) ожидания дочерних процессов — wait(0).
+
+
+
+Что отобразить на консоли:
+
+$ ./a.out 5
+
+main process started... PID = 16814
+
+child started... PID = 16815, PPID = 16814 (i = 0)
+
+child started... PID = 16816, PPID = 16814 (i = 1)
+
+child started... PID = 16817, PPID = 16814 (i = 2)
+
+child started... PID = 16818, PPID = 16814 (i = 3)
+
+child started... PID = 16819, PPID = 16814 (i = 4)
+
+0 child finished... PID = 16815, PPID = 16814
+
+1 child finished... PID = 16816, PPID = 16814
+
+3 child finished... PID = 16818, PPID = 16814
+
+2 child finished... PID = 16817, PPID = 16814
+
+4 child finished... PID = 16819, PPID = 16814
+
+main process finifhed... PID = 16814
+
+$
